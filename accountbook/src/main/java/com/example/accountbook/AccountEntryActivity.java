@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Or;
 import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
 import com.softwise.dto.Account;
@@ -28,7 +30,7 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
     @NotEmpty(message = "输入不能为空！")
     private EditText et_list;
     private RadioGroup rg_group;
-//    private RadioButton rb_wife;
+    private RadioButton rb_checked;
 //    private RadioButton rb_me;
 //    private RadioButton rb_other;
     private EditText et_comment;
@@ -63,14 +65,14 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
                 validator.validate();
             }
         });
-        //获取单选框选择的项
-        rg_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton= (RadioButton) findViewById(checkedId);
-                accaction =radioButton.getText().toString();
-            }
-        });
+
+//        rg_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                RadioButton radioButton= (RadioButton) findViewById(checkedId);
+//                accaction =radioButton.getText().toString();
+//            }
+//        });
 
     }
 
@@ -79,6 +81,9 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
     public void onValidationSucceeded() {
         //把数据存入SQLite数据库
         DBUtil db=new DBUtil(dbHelper);
+        //获取单选框选择的项
+        rb_checked= (RadioButton) findViewById(rg_group.getCheckedRadioButtonId());
+        accaction=rb_checked.getText().toString();
         //获取金额
         accmoney = et_money.getText().toString();
         //获取清单
