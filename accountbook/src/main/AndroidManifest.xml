@@ -13,14 +13,16 @@
             android:label="账单录入">
 
         </activity>
-        <activity android:name=".HomeActivity" >
+        <activity android:name=".HomeActivity"
+            android:label="主页">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountListActivity">
+        <activity android:name=".AccountListActivity"
+            android:label="总账一览">
 
         </activity>
     </application>
