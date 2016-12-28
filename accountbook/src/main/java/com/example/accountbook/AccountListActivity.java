@@ -64,8 +64,14 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         String str6="时间："+tv6.getText().toString();
 
         //弹出详细信息
-        Dialog dialog=new AlertDialog.Builder(this).setTitle("账单详情：")
-                .setItems(new String[]{str1,str2,str3,str4,str5,str6},null).setNegativeButton("确定",null).show();
+        Dialog dialog=new AlertDialog.Builder(this)
+                //标题内容
+                .setTitle("账单详情：")
+                //列表内容，null的类型为Listener
+                .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
+                //按钮内容，null的类型为Listener
+                .setNegativeButton("确定",null)
+                .show();
 //        Toast.makeText(mContext,str1+str2+str3+str4+str5+str6,Toast.LENGTH_SHORT).show();
     }
 }
