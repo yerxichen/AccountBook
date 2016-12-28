@@ -10,16 +10,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyOpenDBHelper extends SQLiteOpenHelper {
     public MyOpenDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "my.db", null, 3);
+        super(context, "my.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE account(accid INTEGER PRIMARY KEY AUTOINCREMENT,accaction VARCHAR(400),accmoney VARCHAR(400),acclist VARCHAR(400),accsay VARCHAR(400))");
+        db.execSQL("CREATE TABLE account(accid INTEGER PRIMARY KEY AUTOINCREMENT,accaction VARCHAR(400),accmoney VARCHAR(400),acclist VARCHAR(400),accsay VARCHAR(400),acctime VARCHAR(100))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("ALTER TABLE account ADD acctime VARCHAR(100) NULL ");
+        //db.execSQL("ALTER TABLE account ADD acctime VARCHAR(100) NULL ");
     }
 }
