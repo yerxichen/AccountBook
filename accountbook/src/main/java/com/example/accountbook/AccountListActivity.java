@@ -143,6 +143,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                         db.update(account);
                     }
                 });
+                updateDialog.setNegativeButton("返回", null);
                 updateDialog.show();
 
             }
@@ -184,7 +185,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                 //列表内容，null的类型为Listener
                 .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
                 //按钮内容，null的类型为Listener
-                //.setNegativeButton("确定",null)
+                .setNegativeButton("返回",null)
                 .show();
 //        Toast.makeText(mContext,str1+str2+str3+str4+str5+str6,Toast.LENGTH_SHORT).show();
 

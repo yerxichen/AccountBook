@@ -10,32 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.accountbook.HomeActivity"
     android:orientation="vertical">
-
     <TextView
-        android:text="欢迎使用女王大人授权的专属APP"
-        android:textSize="40dp"
+        android:text="女王大人的秘密"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/hong"
+        android:textSize="30sp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal">
         <Button
-            android:background="#ff99cc"
-            android:text="记账"
+            android:background="@drawable/lv"
+            android:text="记录点滴"
             android:textSize="30dp"
             android:layout_weight="1"
             android:id="@+id/btn_acc_addacc"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <Button
-            android:background="#66cc99"
-            android:text="查账"
+            android:background="@drawable/zi"
+            android:text="剁手管理"
             android:textSize="30dp"
             android:layout_weight="1"
             android:id="@+id/btn_acc_acclist"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
 
