@@ -48,7 +48,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
-    private Boolean first=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,20 +178,19 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
-        if (first){
-            //弹出详细信息
-            Dialog dialog=new AlertDialog.Builder(this)
-                    //标题内容
-                    .setTitle("账单详情")
-                    //设置图标
-                    .setIcon(R.drawable.info1)
-                    //列表内容，null的类型为Listener
-                    .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
-                    //按钮内容，null的类型为Listener
-                    .setNegativeButton("返回",null)
-                    .show();
-        }
-        first=true;
+
+        Dialog dialog=new AlertDialog.Builder(this)
+                //标题内容
+                .setTitle("账单详情")
+                //设置图标
+                .setIcon(R.drawable.info1)
+                //列表内容，null的类型为Listener
+                .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
+                //按钮内容，null的类型为Listener
+                .setNegativeButton("返回",null)
+                .show();
+
+
 //        Toast.makeText(mContext,str1+str2+str3+str4+str5+str6,Toast.LENGTH_SHORT).show();
 
 

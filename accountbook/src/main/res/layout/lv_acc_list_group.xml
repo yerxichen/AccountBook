@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:gravity="center_vertical"
         android:visibility="gone"
         android:textSize="20sp"
         android:ellipsize="end"
@@ -13,8 +14,9 @@
         android:layout_weight="2"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <TextView
+        android:gravity="center_vertical"
         android:textSize="20sp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -22,8 +24,9 @@
         android:layout_weight="3"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <TextView
+        android:gravity="center_vertical"
         android:textSize="20sp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -31,8 +34,9 @@
         android:layout_weight="3"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <TextView
+        android:gravity="center_vertical"
         android:textSize="20sp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -40,8 +44,9 @@
         android:layout_weight="2"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <TextView
+        android:gravity="center_vertical"
         android:visibility="gone"
         android:textSize="20sp"
         android:ellipsize="end"
@@ -50,24 +55,25 @@
         android:layout_weight="2"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <TextView
+        android:gravity="center_vertical"
         android:textSize="20sp"
         android:ellipsize="end"
         android:maxLines="1"
         android:id="@+id/tv_acc_lv_acctime"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:text="model"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40sp" />
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_update"
-        android:layout_width="25sp"
-        android:layout_height="25sp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:src="@drawable/update"/>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_del"
-        android:layout_width="25sp"
-        android:layout_height="25sp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:src="@drawable/del"/>
 </LinearLayout>
