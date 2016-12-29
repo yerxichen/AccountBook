@@ -65,11 +65,10 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-
     }
 
     @Override
-    public void onItemClick(final AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
 
         //获取listView的item布局，类型为View
         View layout= (View) parent.getChildAt(position);
@@ -154,6 +153,25 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         iv_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AlertDialog.Builder dialogDel=new AlertDialog.Builder(AccountListActivity.this);
+                dialogDel.setTitle("删除账单");
+                dialogDel.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialogDel.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DBUtil db=new DBUtil(dbHelper);
+                        int id=Integer.valueOf(tv1.getText().toString());
+                        db.delect(id);
+                        list.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                dialogDel.show();
 
 
             }
