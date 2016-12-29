@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.softwise.adapter.AccListViewAdapter;
 import com.softwise.db.DBUtil;
@@ -49,7 +48,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
-
+    private Boolean first=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +102,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                 final View dialogView= LayoutInflater.from(AccountListActivity.this)
                         .inflate(R.layout.update_account,null);
                 updateDialog.setTitle("账单更改");
+                updateDialog.setIcon(R.drawable.up1);
                 updateDialog.setView(dialogView);
                 //把本行数据绑定到自定义的view（update_account.xml）中
                 radioGroup= (RadioGroup) dialogView.findViewById(R.id.rg_updateaccount);
@@ -156,6 +156,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
             public void onClick(View v) {
                 final AlertDialog.Builder dialogDel=new AlertDialog.Builder(AccountListActivity.this);
                 dialogDel.setTitle("删除账单");
+                dialogDel.setIcon(R.drawable.del1);
                 dialogDel.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -177,16 +178,20 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
 
             }
         });
-
-        //弹出详细信息
-        Dialog dialog=new AlertDialog.Builder(this)
-                //标题内容
-                .setTitle("账单详情：")
-                //列表内容，null的类型为Listener
-                .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
-                //按钮内容，null的类型为Listener
-                .setNegativeButton("返回",null)
-                .show();
+        if (first){
+            //弹出详细信息
+            Dialog dialog=new AlertDialog.Builder(this)
+                    //标题内容
+                    .setTitle("账单详情")
+                    //设置图标
+                    .setIcon(R.drawable.info1)
+                    //列表内容，null的类型为Listener
+                    .setItems(new String[]{str1,str2,str3,str4,str5,str6},null)
+                    //按钮内容，null的类型为Listener
+                    .setNegativeButton("返回",null)
+                    .show();
+        }
+        first=true;
 //        Toast.makeText(mContext,str1+str2+str3+str4+str5+str6,Toast.LENGTH_SHORT).show();
 
 
