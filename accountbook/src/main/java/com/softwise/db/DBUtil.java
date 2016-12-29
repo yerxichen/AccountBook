@@ -29,7 +29,7 @@ public class DBUtil {
     public void update(Account a){
         SQLiteDatabase db=myOpenDBHelper.getWritableDatabase();
         db.execSQL("UPDATE account SET accaction = ?,accmoney = ?,acclist = ?,accsay = ? WHERE accid = ?",
-                new String[]{a.getAccaction(),a.getAccmoney(),a.getAcclist(),a.getAccsay()});
+                new String[]{a.getAccaction(),a.getAccmoney(),a.getAcclist(),a.getAccsay(),a.getAccid().toString()});
     }
     //删除数据
     public void delect(Integer aid){

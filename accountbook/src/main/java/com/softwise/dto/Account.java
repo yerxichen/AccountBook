@@ -29,6 +29,14 @@ public class Account {
         this.acctime = acctime;
     }
 
+    public Account(Integer accid, String accaction, String accmoney, String acclist, String accsay) {
+        this.accid = accid;
+        this.accaction = accaction;
+        this.accmoney = accmoney;
+        this.acclist = acclist;
+        this.accsay = accsay;
+    }
+
     public Integer getAccid() {
         return accid;
     }
