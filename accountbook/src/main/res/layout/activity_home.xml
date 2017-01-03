@@ -12,6 +12,7 @@
     tools:context="com.example.accountbook.HomeActivity"
     android:orientation="vertical">
     <TextView
+        android:id="@+id/tv_acc_select"
         android:text="女王大人的秘密"
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/hong"
@@ -25,20 +26,20 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="horizontal">
-        <Button
+        <TextView
             android:background="@drawable/lv"
             android:text="记录点滴"
             android:textSize="30dp"
             android:layout_weight="1"
-            android:id="@+id/btn_acc_addacc"
+            android:id="@+id/tv_acc_addacc"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <Button
+        <TextView
             android:background="@drawable/zi"
             android:text="剁手管理"
             android:textSize="30dp"
             android:layout_weight="1"
-            android:id="@+id/btn_acc_acclist"
+            android:id="@+id/tv_acc_acclist"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

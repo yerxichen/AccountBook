@@ -58,7 +58,7 @@ public class AccListViewAdapter extends BaseAdapter {
         }
         viewHolder.accid.setText(list.get(position).getAccid().toString());
         viewHolder.accaction.setText(list.get(position).getAccaction());
-        viewHolder.accmoney.setText(list.get(position).getAccmoney());
+        viewHolder.accmoney.setText(list.get(position).getAccmoney().toString());
         viewHolder.acclist.setText(list.get(position).getAcclist());
         viewHolder.accsay.setText(list.get(position).getAccsay());
         viewHolder.acctime.setText(list.get(position).getAcctime());

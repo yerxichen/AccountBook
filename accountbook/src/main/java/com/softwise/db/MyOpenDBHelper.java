@@ -15,7 +15,8 @@ public class MyOpenDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE account(accid INTEGER PRIMARY KEY AUTOINCREMENT,accaction VARCHAR(400),accmoney VARCHAR(400),acclist VARCHAR(400),accsay VARCHAR(400),acctime VARCHAR(100))");
+        db.execSQL("CREATE TABLE account(accid INTEGER PRIMARY KEY AUTOINCREMENT,accaction VARCHAR(400),accmoney DOUBLE,acclist VARCHAR(400),accsay VARCHAR(400),acctime VARCHAR(100))");
+        db.execSQL("CREATE TABLE money(mid INTEGER PRIMARY KEY AUTOINCREMENT,mcun DOUBLE,mdata VARCHAR(100))");
     }
 
     @Override

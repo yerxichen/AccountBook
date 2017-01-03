@@ -7,12 +7,12 @@ package com.softwise.dto;
 public class Account {
     private Integer accid;
     private String accaction;
-    private String accmoney;
+    private Double accmoney;
     private String acclist;
     private String accsay;
     private String acctime;
 
-    public Account(Integer accid, String accaction, String accmoney, String acclist, String accsay,String acctime) {
+    public Account(Integer accid, String accaction, Double accmoney, String acclist, String accsay, String acctime) {
         this.accid = accid;
         this.accaction = accaction;
         this.accmoney = accmoney;
@@ -21,7 +21,7 @@ public class Account {
         this.acctime = acctime;
     }
 
-    public Account(String accaction, String accmoney, String acclist, String accsay,String acctime) {
+    public Account(String accaction, Double accmoney, String acclist, String accsay, String acctime) {
         this.accaction = accaction;
         this.accmoney = accmoney;
         this.acclist = acclist;
@@ -29,7 +29,7 @@ public class Account {
         this.acctime = acctime;
     }
 
-    public Account(Integer accid, String accaction, String accmoney, String acclist, String accsay) {
+    public Account(Integer accid, String accaction, Double accmoney, String acclist, String accsay) {
         this.accid = accid;
         this.accaction = accaction;
         this.accmoney = accmoney;
@@ -53,11 +53,11 @@ public class Account {
         this.accaction = accaction;
     }
 
-    public String getAccmoney() {
+    public Double getAccmoney() {
         return accmoney;
     }
 
-    public void setAccmoney(String accmoney) {
+    public void setAccmoney(Double accmoney) {
         this.accmoney = accmoney;
     }
 

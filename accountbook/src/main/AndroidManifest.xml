@@ -10,11 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AccountEntryActivity"
-            android:label="账单录入">
-
-        </activity>
-        <activity
-            android:name=".HomeActivity">
+            android:label="账单录入"></activity>
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +20,8 @@
         </activity>
         <activity
             android:name=".AccountListActivity"
-            android:label="总账一览"></activity>
+            android:label="总账一览" />
+        <activity android:name=".AccountAdminActivity"></activity>
     </application>
 
 </manifest>

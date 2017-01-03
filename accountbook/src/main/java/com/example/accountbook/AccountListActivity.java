@@ -21,6 +21,7 @@ import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
 import com.softwise.dto.Account;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class AccountListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
@@ -48,6 +49,11 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
+    //显示本月总共消费，总共存入，和余额
+    private TextView tv_cost;
+    private TextView tv_cun;
+    private TextView tv_yu;
+    private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,18 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         adapter=new AccListViewAdapter(mContext,list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
+        //取得本月总共消费，总共存入，和余额的数据
+        tv_cost= (TextView) findViewById(R.id.tv_acc_qu);
+        tv_cun= (TextView) findViewById(R.id.tv_acc_cun);
+        tv_yu= (TextView) findViewById(R.id.tv_acc_yu);
+        //得到当月月份
+        calendar= Calendar.getInstance();
+        int year=calendar.get(Calendar.YEAR);
+        int month=calendar.get(Calendar.MONTH)+1;
+        //根据年，月取得当月消费
+        String monthCost=db.thisMonthCost(String.valueOf(year),String.valueOf(month));
+        tv_cost.setText(monthCost);
+        //根据月份取得
 
     }
 
@@ -139,7 +157,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                         int id=Integer.valueOf(tv1.getText().toString());
                         //连接数据库更新
                         DBUtil db =new DBUtil(dbHelper);
-                        Account account=new Account(id,accaction,accmoney,acclist,accsay);
+                        Account account=new Account(id,accaction,Double.valueOf(accmoney),acclist,accsay);
                         db.update(account);
                     }
                 });

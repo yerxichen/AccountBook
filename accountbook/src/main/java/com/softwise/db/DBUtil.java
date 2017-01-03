@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.softwise.dto.Account;
+import com.softwise.dto.Money;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,13 @@ public class DBUtil {
     public void add(Account a){
         SQLiteDatabase db=myOpenDBHelper.getWritableDatabase();
         db.execSQL("INSERT INTO account(accaction,accmoney,acclist,accsay,acctime) values(?,?,?,?,?)",
-                new String[]{a.getAccaction(),a.getAccmoney(),a.getAcclist(),a.getAccsay(),a.getAcctime()});
+                new String[]{a.getAccaction(),a.getAccmoney().toString(),a.getAcclist(),a.getAccsay(),a.getAcctime()});
     }
     //修改数据
     public void update(Account a){
         SQLiteDatabase db=myOpenDBHelper.getWritableDatabase();
         db.execSQL("UPDATE account SET accaction = ?,accmoney = ?,acclist = ?,accsay = ? WHERE accid = ?",
-                new String[]{a.getAccaction(),a.getAccmoney(),a.getAcclist(),a.getAccsay(),a.getAccid().toString()});
+                new String[]{a.getAccaction(),a.getAccmoney().toString(),a.getAcclist(),a.getAccsay(),a.getAccid().toString()});
     }
     //删除数据
     public void delect(Integer aid){
@@ -37,23 +38,19 @@ public class DBUtil {
         db.execSQL("DELETE FROM account WHERE accid = ?",
                 new String[]{aid.toString()});
     }
-    //查询数据
-    public List<Account> excute(Integer aid){
+    //查询当月费用数据
+    public String thisMonthCost(String year,String month){
+        String data=year+"."+month;
         SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM account WHERE accid = ?",
-                new String[]{aid.toString()});
-        List<Account> list=new ArrayList<>();
+        Cursor cursor=db.rawQuery("SELECT SUM(accmoney) cost FROM account WHERE acctime like ? ",
+                new String[]{data+".%"});
+        Double moneyCost=0.0;
         while (cursor.moveToNext()){
-            int accid=cursor.getInt(cursor.getColumnIndex("accid"));
-            String accaction=cursor.getString(cursor.getColumnIndex("accaction"));
-            String accmoney=cursor.getString(cursor.getColumnIndex("accmoney"));
-            String acclist=cursor.getString(cursor.getColumnIndex("acclist"));
-            String accsay=cursor.getString(cursor.getColumnIndex("accsay"));
-            String acctime=cursor.getString(cursor.getColumnIndex("acctime"));
-            list.add(new Account(accid,accaction,accmoney,acclist,accsay,acctime));
+            moneyCost=cursor.getDouble(cursor.getColumnIndex("cost"));
+
         }
         cursor.close();
-        return list;
+        return moneyCost.toString();
     }
     //查询所有数据
     public List<Account> excuteAll(){
@@ -63,7 +60,7 @@ public class DBUtil {
         while (cursor.moveToNext()){
             int accid=cursor.getInt(cursor.getColumnIndex("accid"));
             String accaction=cursor.getString(cursor.getColumnIndex("accaction"));
-            String accmoney=cursor.getString(cursor.getColumnIndex("accmoney"));
+            Double accmoney=cursor.getDouble(cursor.getColumnIndex("accmoney"));
             String acclist=cursor.getString(cursor.getColumnIndex("acclist"));
             String accsay=cursor.getString(cursor.getColumnIndex("accsay"));
             String acctime=cursor.getString(cursor.getColumnIndex("acctime"));
@@ -72,4 +69,23 @@ public class DBUtil {
         cursor.close();
         return list;
     }
+    //新增金额
+    public void addMoney(Money m){
+        SQLiteDatabase db=myOpenDBHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO money(mcun,mdata) values(?,?)",
+                new Object[]{m.getMcun(),m.getMdata()});
+    }
+    //得到某月存入的总金额
+    public String selectMonthCun(String dataMonth){
+        SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT SUM(mcun) cun FROM money WHERE mdata=?",
+                new String[]{dataMonth});
+        Double moneyMonth=0.0;
+        while (cursor.moveToNext()){
+            moneyMonth=cursor.getDouble(cursor.getColumnIndex("cun"));
+        }
+        cursor.close();
+        return moneyMonth.toString();
+    }
+
 }

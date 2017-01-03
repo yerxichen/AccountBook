@@ -96,7 +96,7 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
         int month=calendar.get(Calendar.MONTH)+1;
         int day=calendar.get(Calendar.DAY_OF_MONTH);
         acctime= String.valueOf(year)+"."+String.valueOf(month)+"."+String.valueOf(day);
-        Account account=new Account(accaction,accmoney,acclist,accsay,acctime);
+        Account account=new Account(accaction,Double.valueOf(accmoney),acclist,accsay,acctime);
         db.add(account);
         Toast.makeText(this,"保存成功",Toast.LENGTH_SHORT).show();
     }
