@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 
 public class AccountListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     //定义变量
+    private DBUtil db;
     private Context mContext;
     private ArrayList<Account> list;
     private ListView listView;
@@ -54,7 +56,13 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     private TextView tv_cost;
     private TextView tv_cun;
     private Calendar calendar;
-
+    //分页查询
+    private Button btn_last;
+    private Button btn_next;
+    //定义年月日
+    private int year;
+    private int month;
+    private int day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,20 +72,23 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         listView= (ListView) findViewById(R.id.lv_acc_list);
         tv_cost= (TextView) findViewById(R.id.tv_acc_qu);
         tv_cun= (TextView) findViewById(R.id.tv_acc_cun);
+        btn_last= (Button) findViewById(R.id.btn_acc_lastMonth);
+        btn_next= (Button) findViewById(R.id.btn_acc_nextMonth);
         //连接数据库
         dbHelper=new MyOpenDBHelper(mContext,"my.db",null,1);
-        DBUtil db=new DBUtil(dbHelper);
+        db=new DBUtil(dbHelper);
         //得到当月月份
         calendar= Calendar.getInstance();
-        int year=calendar.get(Calendar.YEAR);
-        int month=calendar.get(Calendar.MONTH)+1;
+        year=calendar.get(Calendar.YEAR);
+        month=calendar.get(Calendar.MONTH)+1;
         //根据年，月取得当月消费和当月存入
-        Double monthCost=db.thisMonthCost(year,month);
-        String mCost=MyDecimal.pointTwo(monthCost);
-        tv_cost.setText(mCost);
-        Double monthCun=db.thisMonthAdd(year,month);
-        String mCun=MyDecimal.pointTwo(monthCun);
-        tv_cun.setText(mCun);
+//        Double monthCost=db.thisMonthCost(year,month);
+//        String mCost=MyDecimal.pointTwo(monthCost);
+//        tv_cost.setText(mCost);
+//        Double monthCun=db.thisMonthAdd(year,month);
+//        String mCun=MyDecimal.pointTwo(monthCun);
+//        tv_cun.setText(mCun);
+        getCun(year,month,db,tv_cost,tv_cun);
         //取得集合数据
         list= (ArrayList<Account>) db.thisMonthList(year,month);
         //加载适配器
@@ -85,10 +96,55 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
+        btn_last.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                month--;
+                if (month==0){
+                    month=12;
+                    year--;
+                }
+                //取得集合数据
+                list= (ArrayList<Account>) db.thisMonthList(year,month);
+                //加载适配器
+                adapter=new AccListViewAdapter(mContext,list);
+                listView.setAdapter(adapter);
+                //更新状态栏
+                getCun(year,month,db,tv_cost,tv_cun);
+            }
+        });
+
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                month++;
+                if (month==13){
+                    month=1;
+                    year++;
+                }
+                //取得集合数据
+                list= (ArrayList<Account>) db.thisMonthList(year,month);
+                //加载适配器
+                adapter=new AccListViewAdapter(mContext,list);
+                listView.setAdapter(adapter);
+                //更新状态栏
+                getCun(year,month,db,tv_cost,tv_cun);
+
+            }
+        });
 
 
 
-
+    }
+    //得到目标月存入的金额，并更新在状态栏
+    private static void getCun(int year,int month,DBUtil db,TextView tvCost,TextView tvCun){
+        //根据年，月取得当月消费和当月存入
+        Double monthCost=db.thisMonthCost(year,month);
+        String mCost=MyDecimal.pointTwo(monthCost);
+        tvCost.setText(mCost);
+        Double monthCun=db.thisMonthAdd(year,month);
+        String mCun=MyDecimal.pointTwo(monthCun);
+        tvCun.setText(mCun);
     }
 
     @Override

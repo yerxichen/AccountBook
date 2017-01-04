@@ -110,12 +110,40 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <ListView
-        android:divider="#999966"
-        android:dividerHeight="2sp"
-        android:id="@+id/lv_acc_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="9">
+        <ListView
+            android:divider="#999966"
+            android:dividerHeight="2sp"
+            android:id="@+id/lv_acc_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </ListView>
+        </ListView>
+    </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:layout_marginTop="16dp"
+       android:gravity="center">
+       <Button
+           android:text="上个月"
+           android:id="@+id/btn_acc_lastMonth"
+           android:background="@drawable/round"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginRight="5dp"/>
+       <Button
+           android:text="下个月"
+           android:id="@+id/btn_acc_nextMonth"
+           android:background="@drawable/round"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"/>
+   </LinearLayout>
+
+
 </LinearLayout>

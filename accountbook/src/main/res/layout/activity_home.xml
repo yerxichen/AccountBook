@@ -28,6 +28,7 @@
         android:orientation="horizontal">
         <TextView
             android:background="@drawable/lv"
+            android:gravity="center_horizontal|center_vertical"
             android:text="记录点滴"
             android:textSize="30dp"
             android:layout_weight="1"
@@ -36,6 +37,7 @@
             android:layout_height="match_parent" />
         <TextView
             android:background="@drawable/zi"
+            android:gravity="center_horizontal|center_vertical"
             android:text="剁手管理"
             android:textSize="30dp"
             android:layout_weight="1"

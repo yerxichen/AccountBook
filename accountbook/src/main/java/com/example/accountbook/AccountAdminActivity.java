@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobsandgeeks.saripaar.annotation.Digits;
@@ -26,7 +27,7 @@ public class AccountAdminActivity extends AppCompatActivity {
     private TextView tv_qu;
     private TextView tv_yu;
     private EditText et_dialogAddMoney;
-    private Button btn_cun;
+    private ImageView iv_cun;
     private MyOpenDBHelper dbHelper;
     private Context mContext;
     private Double allCost=0.0;
@@ -42,7 +43,7 @@ public class AccountAdminActivity extends AppCompatActivity {
         tv_cun= (TextView) findViewById(R.id.tv_acc_admin_cun);
         tv_qu= (TextView) findViewById(R.id.tv_acc_admin_qu);
         tv_yu= (TextView) findViewById(R.id.tv_acc_admin_yu);
-        btn_cun= (Button) findViewById(R.id.btn_acc_admin_addmoney);
+        iv_cun= (ImageView) findViewById(R.id.iv_cun);
         mContext=AccountAdminActivity.this;
 
         //连接数据库
@@ -63,7 +64,7 @@ public class AccountAdminActivity extends AppCompatActivity {
             tv_yu.setTextColor(mContext.getResources().getColor(R.color.green));
         }
 
-        btn_cun.setOnClickListener(new View.OnClickListener() {
+        iv_cun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 et_dialogAddMoney=new EditText(mContext);
