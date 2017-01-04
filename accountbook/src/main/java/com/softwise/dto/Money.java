@@ -9,6 +9,11 @@ public class Money {
     private Double mcun;
     private String mdata;
 
+    public Money(Double mcun, String mdata) {
+        this.mcun = mcun;
+        this.mdata = mdata;
+    }
+
     public int getMid() {
         return mid;
     }

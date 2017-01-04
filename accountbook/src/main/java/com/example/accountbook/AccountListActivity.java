@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.softwise.Util.MyDecimal;
 import com.softwise.adapter.AccListViewAdapter;
 import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
@@ -52,35 +53,41 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     //显示本月总共消费，总共存入，和余额
     private TextView tv_cost;
     private TextView tv_cun;
-    private TextView tv_yu;
     private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_list);
+        //绑定数据
         mContext=AccountListActivity.this;
-        dbHelper=new MyOpenDBHelper(mContext,"my.db",null,1);
         listView= (ListView) findViewById(R.id.lv_acc_list);
-        //取得集合数据
-        DBUtil db=new DBUtil(dbHelper);
-        list= (ArrayList<Account>) db.excuteAll();
-        //加载适配器
-        adapter=new AccListViewAdapter(mContext,list);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
-        //取得本月总共消费，总共存入，和余额的数据
         tv_cost= (TextView) findViewById(R.id.tv_acc_qu);
         tv_cun= (TextView) findViewById(R.id.tv_acc_cun);
-        tv_yu= (TextView) findViewById(R.id.tv_acc_yu);
+        //连接数据库
+        dbHelper=new MyOpenDBHelper(mContext,"my.db",null,1);
+        DBUtil db=new DBUtil(dbHelper);
         //得到当月月份
         calendar= Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH)+1;
-        //根据年，月取得当月消费
-        String monthCost=db.thisMonthCost(String.valueOf(year),String.valueOf(month));
-        tv_cost.setText(monthCost);
-        //根据月份取得
+        //根据年，月取得当月消费和当月存入
+        Double monthCost=db.thisMonthCost(year,month);
+        String mCost=MyDecimal.pointTwo(monthCost);
+        tv_cost.setText(mCost);
+        Double monthCun=db.thisMonthAdd(year,month);
+        String mCun=MyDecimal.pointTwo(monthCun);
+        tv_cun.setText(mCun);
+        //取得集合数据
+        list= (ArrayList<Account>) db.thisMonthList(year,month);
+        //加载适配器
+        adapter=new AccListViewAdapter(mContext,list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
+
+
+
 
     }
 

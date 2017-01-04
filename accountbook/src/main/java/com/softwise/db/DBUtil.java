@@ -38,8 +38,8 @@ public class DBUtil {
         db.execSQL("DELETE FROM account WHERE accid = ?",
                 new String[]{aid.toString()});
     }
-    //查询当月费用数据
-    public String thisMonthCost(String year,String month){
+    //查询某月消费
+    public Double thisMonthCost(int year,int month){
         String data=year+"."+month;
         SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT SUM(accmoney) cost FROM account WHERE acctime like ? ",
@@ -50,12 +50,27 @@ public class DBUtil {
 
         }
         cursor.close();
-        return moneyCost.toString();
+        return moneyCost;
     }
-    //查询所有数据
-    public List<Account> excuteAll(){
+    //查询某月存入
+    public Double thisMonthAdd(int year,int month){
+        String data=year+"."+month;
         SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT * FROM account ",null);
+        Cursor cursor=db.rawQuery("SELECT SUM(mcun) cun FROM money WHERE mdata like ? ",
+                new String[]{data+".%"});
+        Double moneyCun=0.0;
+        while (cursor.moveToNext()){
+            moneyCun=cursor.getDouble(cursor.getColumnIndex("cun"));
+        }
+        cursor.close();
+        return moneyCun;
+    }
+    //查询本月数据列表
+    public List<Account> thisMonthList(int year,int month){
+        String data=year+"."+month;
+        SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT *  FROM account WHERE acctime like ? ",
+                new String[]{data+".%"});
         List<Account> list=new ArrayList<>();
         while (cursor.moveToNext()){
             int accid=cursor.getInt(cursor.getColumnIndex("accid"));
@@ -68,6 +83,28 @@ public class DBUtil {
         }
         cursor.close();
         return list;
+    }
+    //查询总共花费金额
+    public Double costAll(){
+        SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT SUM(accmoney) cost FROM account ",null);
+        Double allCost=0.0;
+        while (cursor.moveToNext()){
+            allCost=cursor.getDouble(cursor.getColumnIndex("cost"));
+        }
+        cursor.close();
+        return allCost;
+    }
+    //查询总共存入金额
+    public Double cunAll(){
+        SQLiteDatabase db=myOpenDBHelper.getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT SUM(mcun) cun FROM money ",null);
+        Double allCun=0.0;
+        while (cursor.moveToNext()){
+            allCun=cursor.getDouble(cursor.getColumnIndex("cun"));
+        }
+        cursor.close();
+        return allCun;
     }
     //新增金额
     public void addMoney(Money m){
