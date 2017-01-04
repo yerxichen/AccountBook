@@ -17,6 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.mobsandgeeks.saripaar.annotation.DecimalMin;
+import com.mobsandgeeks.saripaar.annotation.Domain;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.softwise.Util.MyDecimal;
 import com.softwise.adapter.AccListViewAdapter;
 import com.softwise.db.DBUtil;
@@ -49,7 +52,9 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     private TextView tv5;
     private TextView tv6;
     private RadioGroup radioGroup;
+    @DecimalMin(value = 0,message = "输入的金额类型有误，必须是数字并且大于0！")
     private EditText editText1;
+    @NotEmpty(message = "输入不能为空！")
     private EditText editText2;
     private EditText editText3;
     //显示本月总共消费，总共存入，和余额

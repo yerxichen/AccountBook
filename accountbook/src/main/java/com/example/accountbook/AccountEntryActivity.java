@@ -12,10 +12,8 @@ import android.widget.Toast;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Or;
 import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
 import com.softwise.dto.Account;
@@ -112,10 +110,5 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
                 Toast.makeText(this,"提交失败，请检查！",Toast.LENGTH_SHORT).show();
             }
         }
-
-
     }
-
-
-
 }
