@@ -8,9 +8,9 @@ import java.text.DecimalFormat;
 
 public class MyDecimal {
     //保留double小数点后两位
-    public static String pointTwo(Double d){
-        DecimalFormat decimalFormat=new DecimalFormat(".##");
-        String str=decimalFormat.format(d);
+    public static String pointTwo(Double d) {
+        DecimalFormat decimalFormat = new DecimalFormat(".##");
+        String str = decimalFormat.format(d);
         return str;
     }
 
