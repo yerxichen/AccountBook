@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,14 +16,12 @@ import android.widget.Toast;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
-import com.mobsandgeeks.saripaar.annotation.Digits;
 import com.softwise.Util.MyDecimal;
 import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
 import com.softwise.dto.Money;
 
-import java.lang.reflect.Field;
-import java.text.DecimalFormat;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -82,9 +79,19 @@ public class AccountAdminActivity extends AppCompatActivity {
                 AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
                 builder.setTitle("请输入存入金额：元");
                 builder.setView(et_dialogAddMoney);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("确定", null);
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                //builder.show();
+                final AlertDialog alertDialog=builder.create();
+                alertDialog.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         validator=new Validator(mContext);
                         validator.setValidationListener(new Validator.ValidationListener() {
                             @Override
@@ -111,6 +118,7 @@ public class AccountAdminActivity extends AppCompatActivity {
                                 }else {
                                     tv_yu.setTextColor(mContext.getResources().getColor(R.color.green));
                                 }
+                                alertDialog.dismiss();
                             }
 
                             @Override
@@ -124,19 +132,14 @@ public class AccountAdminActivity extends AppCompatActivity {
                                         Toast.makeText(mContext,"提交失败，请检查！",Toast.LENGTH_SHORT).show();
                                     }
                                 }
+
+
                             }
                         });
                         validator.validate();
+                    }
+                });
 
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.show();
 
             }
         });
