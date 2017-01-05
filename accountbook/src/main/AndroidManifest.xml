@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".AccountListActivity"
-            android:label="账单一览" />
+            android:label="月账单一览" />
         <activity
             android:name=".AccountAdminActivity"
             android:label="秘密花园">

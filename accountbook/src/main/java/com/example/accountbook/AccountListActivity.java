@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class AccountListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class AccountListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     //定义变量
     private DBUtil db;
     private Context mContext;
@@ -80,6 +80,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         //绑定数据
         mContext = AccountListActivity.this;
         listView = (ListView) findViewById(R.id.lv_acc_list);
+       // listView.setItemsCanFocus(true);
         tv_cost = (TextView) findViewById(R.id.tv_acc_qu);
         tv_cun = (TextView) findViewById(R.id.tv_acc_cun);
         btn_last = (Button) findViewById(R.id.btn_acc_lastMonth);
@@ -105,7 +106,6 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         adapter = new AccListViewAdapter(mContext, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
         btn_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,8 +157,9 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         tvCun.setText(mCun);
     }
 
+    //item的点击事件
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+    public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
 
         //获取listView的item布局，类型为View
         View layout = parent.getChildAt(position);
@@ -184,8 +185,29 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
         //更新功能
         iv_upadate = (ImageView) layout.findViewById(R.id.iv_update);
         iv_upadate.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                //获取listView的item布局，类型为View
+                View layout = parent.getChildAt(position);
+                //绑定id控件,并获取值
+                tv1 = (TextView) layout.findViewById(R.id.tv_acc_lv_accid);
+                str1 = "账单：" + tv1.getText().toString();
+                //绑定action控件，并获取值
+                tv2 = (TextView) layout.findViewById(R.id.tv_acc_lv_accaction);
+                str2 = "目的：" + tv2.getText().toString();
+                //绑定money控件，并获取值
+                tv3 = (TextView) layout.findViewById(R.id.tv_acc_lv_accmoney);
+                str3 = "金额：" + tv3.getText().toString();
+                //绑定list控件，并获取值
+                tv4 = (TextView) layout.findViewById(R.id.tv_acc_lv_acclist);
+                str4 = "清单：" + tv4.getText().toString();
+                //绑定say控件，并获取值
+                tv5 = (TextView) layout.findViewById(R.id.tv_acc_lv_accsay);
+                str5 = "评论：" + tv5.getText().toString();
+                //绑定time控件，并获取值
+                tv6 = (TextView) layout.findViewById(R.id.tv_acc_lv_acctime);
+                str6 = "时间：" + tv6.getText().toString();
                 validator = new Validator(mContext);
 
                 // Toast.makeText(AccountListActivity.this,"222",Toast.LENGTH_SHORT).show();
@@ -243,6 +265,13 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                                 DBUtil db = new DBUtil(dbHelper);
                                 Account account = new Account(id, accaction, Double.valueOf(accmoney), acclist, accsay);
                                 db.update(account);
+                                //更新状态栏的显示
+                                //修改后的差额为修改前减修改后
+                                Double cha=Double.valueOf(str3.substring(3))-Double.valueOf(accmoney);
+                                Double cost=Double.valueOf(tv_cost.getText().toString());
+                                Double mix=cost-cha;
+                                String res=MyDecimal.pointTwo(mix);
+                                tv_cost.setText(res);
                                 alertDialog.dismiss();
                             }
 
@@ -283,6 +312,13 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                 dialogDel.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //更新状态栏的数据
+                        Double cha=Double.valueOf(str3.substring(3));
+                        Double cost=Double.valueOf(tv_cost.getText().toString());
+                        Double mix=cost-cha;
+                        String res=MyDecimal.pointTwo(mix);
+                        tv_cost.setText(res);
+                        //更新数据库
                         DBUtil db = new DBUtil(dbHelper);
                         int id = Integer.valueOf(tv1.getText().toString());
                         db.delect(id);
@@ -298,34 +334,6 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
 
 
 //        Toast.makeText(mContext,str1+str2+str3+str4+str5+str6,Toast.LENGTH_SHORT).show();
-
-
-    }
-
-    //长按显示详情
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        //获取listView的item布局，类型为View
-        View layout = parent.getChildAt(position);
-        //绑定id控件,并获取值
-        tv1 = (TextView) layout.findViewById(R.id.tv_acc_lv_accid);
-        str1 = "账单：" + tv1.getText().toString();
-        //绑定action控件，并获取值
-        tv2 = (TextView) layout.findViewById(R.id.tv_acc_lv_accaction);
-        str2 = "目的：" + tv2.getText().toString();
-        //绑定money控件，并获取值
-        tv3 = (TextView) layout.findViewById(R.id.tv_acc_lv_accmoney);
-        str3 = "金额：" + tv3.getText().toString();
-        //绑定list控件，并获取值
-        tv4 = (TextView) layout.findViewById(R.id.tv_acc_lv_acclist);
-        str4 = "清单：" + tv4.getText().toString();
-        //绑定say控件，并获取值
-        tv5 = (TextView) layout.findViewById(R.id.tv_acc_lv_accsay);
-        str5 = "评论：" + tv5.getText().toString();
-        //绑定time控件，并获取值
-        tv6 = (TextView) layout.findViewById(R.id.tv_acc_lv_acctime);
-        str6 = "时间：" + tv6.getText().toString();
-
         new AlertDialog.Builder(this)
                 //标题内容
                 .setTitle("账单详情")
@@ -336,6 +344,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
                 //按钮内容，null的类型为Listener
                 .setNegativeButton("返回", null)
                 .show();
-        return false;
+
     }
+
 }

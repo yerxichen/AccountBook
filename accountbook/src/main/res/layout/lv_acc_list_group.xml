@@ -70,7 +70,7 @@
         android:id="@+id/iv_update"
         android:layout_width="40sp"
         android:layout_height="40sp"
-        android:src="@drawable/update"/>
+        android:src="@drawable/update" />
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_del"
         android:layout_width="40sp"
