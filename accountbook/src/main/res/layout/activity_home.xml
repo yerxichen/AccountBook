@@ -4,21 +4,8 @@
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffffff"
     tools:context="com.example.accountbook.HomeActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:id="@+id/tv_toolbar_title"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.Toolbar>
 
     <RadioGroup
         android:id="@+id/rg_bottom"
@@ -27,38 +14,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <RadioButton
-            android:id="@+id/rg_list"
+            android:id="@+id/rb_list"
             style="@style/RadioButton"
             android:drawableTop="@drawable/menu_list"
             android:text="@string/rg_text_list"/>
         <RadioButton
-            android:id="@+id/rg_entry"
+            android:id="@+id/rb_entry"
             style="@style/RadioButton"
             android:drawableTop="@drawable/menu_entry"
             android:text="@string/rb_text_entry"/>
         <RadioButton
-            android:id="@+id/rg_admin"
+            android:id="@+id/rb_admin"
             style="@style/RadioButton"
             android:drawableTop="@drawable/menu_admin"
             android:text="@string/rg_text_admin_"/>
 
     </RadioGroup>
+
     <View
-        android:layout_below="@id/toolbar"
-        android:background="@color/text_gray"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></View>
-    <View
+        android:id="@+id/v_down"
         android:layout_above="@id/rg_bottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/text_gray"></View>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_content"
-        android:layout_above="@id/rg_bottom"
-        android:layout_below="@id/toolbar"
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_above="@id/v_down"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
+    </FrameLayout>
 </RelativeLayout>
