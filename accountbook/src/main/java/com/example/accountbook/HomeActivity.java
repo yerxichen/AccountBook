@@ -17,7 +17,8 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
     private AccountEntryFragment frag_entry;
     private FragmentManager fragmentManager;
     private RadioButton rb_list;
-
+    //控制返回键退出时间
+    private long exitTime=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
                     transaction.add(R.id.fl_content, frag_list);
                 } else {
                     transaction.show(frag_list);
+                    frag_list.onResume();
                 }
                 break;
             case R.id.rb_entry:
@@ -60,6 +62,7 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
                     transaction.add(R.id.fl_content, frag_entry);
                 } else {
                     transaction.show(frag_entry);
+                    frag_entry.onResume();
                 }
                 break;
             case R.id.rb_admin:
@@ -69,6 +72,7 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
                     transaction.add(R.id.fl_content, frag_admin);
                 } else {
                     transaction.show(frag_admin);
+                    frag_admin.onResume();
                 }
                 break;
         }
@@ -86,6 +90,17 @@ public class HomeActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
         if (frag_admin != null) {
             transaction.hide(frag_admin);
+        }
+    }
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis()-exitTime>2000){
+            Toast.makeText(this,"再按一次退出程序！",Toast.LENGTH_SHORT).show();
+            exitTime=System.currentTimeMillis();
+        }else {
+            finish();
+            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 }

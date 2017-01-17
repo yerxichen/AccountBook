@@ -76,7 +76,7 @@ public class AccountListActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_list);
+        setContentView(R.layout.fragment_account_list);
         //绑定数据
         mContext = AccountListActivity.this;
         listView = (ListView) findViewById(R.id.lv_acc_list);

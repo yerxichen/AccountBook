@@ -41,7 +41,7 @@ public class AccountEntryActivity extends AppCompatActivity implements Validator
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_entry);
+        setContentView(R.layout.fragment_account_entry);
         //绑定数据
         mContext=AccountEntryActivity.this;
         dbHelper=new MyOpenDBHelper(mContext,"my.db",null,1);

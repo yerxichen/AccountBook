@@ -1,6 +1,5 @@
 package com.example.accountbook;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -45,7 +44,7 @@ public class AccountAdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_admin);
+        setContentView(R.layout.fragment_account_admin);
         //绑定控件
         tv_cun = (TextView) findViewById(R.id.tv_acc_admin_cun);
         tv_qu = (TextView) findViewById(R.id.tv_acc_admin_qu);

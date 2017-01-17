@@ -18,5 +18,11 @@
         <item name="android:paddingTop">3dp</item>
         <item name="android:background">@drawable/rb_background</item>
     </style>
-
+    <style name="TitleText">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
