@@ -5,6 +5,7 @@ package com.softwise.dto;
  */
 
 public class Account {
+    private Integer aIcon;
     private Integer accid;
     private String accaction;
     private Double accmoney;
@@ -35,6 +36,21 @@ public class Account {
         this.accmoney = accmoney;
         this.acclist = acclist;
         this.accsay = accsay;
+    }
+
+    public Account(Integer aIcon, Double accmoney, String acclist, String acctime) {
+        this.aIcon = aIcon;
+        this.accmoney = accmoney;
+        this.acclist = acclist;
+        this.acctime = acctime;
+    }
+
+    public Integer getaIcon() {
+        return aIcon;
+    }
+
+    public void setaIcon(Integer aIcon) {
+        this.aIcon = aIcon;
     }
 
     public Integer getAccid() {

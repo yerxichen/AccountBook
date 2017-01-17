@@ -1,15 +1,18 @@
 package com.softwise.adapter;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.accountbook.R;
 import com.softwise.dto.Account;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 /**
@@ -72,5 +75,6 @@ public class AccListViewAdapter extends BaseAdapter {
         TextView acclist;
         TextView accsay;
         TextView acctime;
+        ImageView accicon;
     }
 }

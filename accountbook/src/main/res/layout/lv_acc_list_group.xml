@@ -4,68 +4,129 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:gravity="center_vertical"
-        android:visibility="gone"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_accid"
-        android:layout_weight="2"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
-    <TextView
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_accaction"
-        android:layout_weight="3"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
-    <TextView
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_accmoney"
-        android:layout_weight="3"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
-    <TextView
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_acclist"
-        android:layout_weight="2"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
-    <TextView
-        android:gravity="center_vertical"
-        android:visibility="gone"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_accsay"
-        android:layout_weight="2"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
-    <TextView
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:id="@+id/tv_acc_lv_acctime"
-        android:layout_weight="5"
-        android:text="model"
-        android:layout_width="0dp"
-        android:layout_height="40sp" />
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="75dp"
+        android:layout_height="75dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="vertical">
+        <TextView
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/tv_acc_lv_accid"
+            android:layout_weight="1"
+            android:text="model"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/tv_acc_lv_accaction"
+            android:layout_weight="1"
+            android:text="model"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:text="价格："
+                android:gravity="center_vertical|left"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:id="@+id/tv_acc_lv_accmoney"
+                android:text="model"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:text="清单："
+                android:gravity="center_vertical|left"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:id="@+id/tv_acc_lv_acclist"
+                android:text="model"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <!--<TextView-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:textSize="20sp"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="1"-->
+            <!--android:id="@+id/tv_acc_lv_acclist"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="model"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+        <TextView
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:id="@+id/tv_acc_lv_accsay"
+            android:layout_weight="1"
+            android:text="model"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:text="时间："
+                android:gravity="center_vertical|left"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center_vertical"
+                android:textSize="20sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:id="@+id/tv_acc_lv_acctime"
+                android:text="model"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <!--<TextView-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:textSize="20sp"-->
+            <!--android:ellipsize="end"-->
+            <!--android:maxLines="1"-->
+            <!--android:id="@+id/tv_acc_lv_acctime"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="model"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+    </LinearLayout>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_update"
         android:layout_width="40sp"
