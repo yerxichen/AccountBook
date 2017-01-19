@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountListFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class AccountListFragment extends Fragment implements AdapterView.OnItemClickListener,AccListViewAdapter.Callback{
     //定义变量
     private DBUtil db;
     private Context mContext;
@@ -90,7 +90,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
         //取得集合数据
         list = (ArrayList<Account>) db.thisMonthList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
         //加载适配器
-        adapter = new AccListViewAdapter(mContext, list);
+        adapter = new AccListViewAdapter(mContext, list,this);
         listView.setAdapter(adapter);
 
     }
@@ -125,7 +125,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
         //取得集合数据
         list = (ArrayList<Account>) db.thisMonthList(year, month);
         //加载适配器
-        adapter = new AccListViewAdapter(mContext, list);
+        adapter = new AccListViewAdapter(mContext, list,this);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         btn_last.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +139,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
                 //取得集合数据
                 list = (ArrayList<Account>) db.thisMonthList(year, month);
                 //加载适配器
-                adapter = new AccListViewAdapter(mContext, list);
+                adapter = new AccListViewAdapter(mContext, list,null);
                 listView.setAdapter(adapter);
                 //更新状态栏
                 getCun(year, month, db, tv_cost, tv_cun);
@@ -157,7 +157,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
                 //取得集合数据
                 list = (ArrayList<Account>) db.thisMonthList(year, month);
                 //加载适配器
-                adapter = new AccListViewAdapter(mContext, list);
+                adapter = new AccListViewAdapter(mContext, list,null);
                 listView.setAdapter(adapter);
                 //更新状态栏
                 getCun(year, month, db, tv_cost, tv_cun);
@@ -232,7 +232,6 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
                 str6 = "时间：" + tv6.getText().toString();
                 validator = new Validator(mContext);
 
-                // Toast.makeText(AccountListActivity.this,"222",Toast.LENGTH_SHORT).show();
 
                 //弹出修改信息
                 AlertDialog.Builder updateDialog = new AlertDialog.Builder(mContext);
@@ -369,4 +368,8 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
 
     }
 
+    @Override
+    public void click(View v) {
+        Toast.makeText(mContext,"回调的被触发了！"+v.getTag(),Toast.LENGTH_SHORT).show();
+    }
 }

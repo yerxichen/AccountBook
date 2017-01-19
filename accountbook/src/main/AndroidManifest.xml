@@ -17,12 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AccountListActivity"
-            android:label="月账单一览" />
-        <activity
-            android:name=".AccountAdminActivity"
-            android:label="秘密花园"></activity>
+
         <activity android:name=".ImageShowActivity">
             <intent-filter>
                 <action android:name="my_action"/>
