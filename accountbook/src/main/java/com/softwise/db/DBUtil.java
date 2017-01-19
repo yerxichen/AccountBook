@@ -23,8 +23,8 @@ public class DBUtil {
     //插入数据
     public void add(Account a){
         SQLiteDatabase db=myOpenDBHelper.getWritableDatabase();
-        db.execSQL("INSERT INTO account(accaction,accmoney,acclist,accsay,acctime) values(?,?,?,?,?)",
-                new String[]{a.getAccaction(),a.getAccmoney().toString(),a.getAcclist(),a.getAccsay(),a.getAcctime()});
+        db.execSQL("INSERT INTO account(accaction,accmoney,acclist,accsay,acctime,accpic) values(?,?,?,?,?,?)",
+                new String[]{a.getAccaction(),a.getAccmoney().toString(),a.getAcclist(),a.getAccsay(),a.getAcctime(),a.getAccpic()});
     }
     //修改数据
     public void update(Account a){
@@ -79,7 +79,8 @@ public class DBUtil {
             String acclist=cursor.getString(cursor.getColumnIndex("acclist"));
             String accsay=cursor.getString(cursor.getColumnIndex("accsay"));
             String acctime=cursor.getString(cursor.getColumnIndex("acctime"));
-            list.add(new Account(accid,accaction,accmoney,acclist,accsay,acctime));
+            String accpic=cursor.getString(cursor.getColumnIndex("accpic"));
+            list.add(new Account(accid,accaction,accmoney,acclist,accsay,acctime,accpic));
         }
         cursor.close();
         return list;

@@ -69,6 +69,13 @@
             android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_acc_photo"
+            android:src="@drawable/listphoto"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <EditText
             android:hint="@string/xiejuti"
             android:id="@+id/et_acc_list"

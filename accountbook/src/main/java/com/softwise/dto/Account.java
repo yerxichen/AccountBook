@@ -5,29 +5,40 @@ package com.softwise.dto;
  */
 
 public class Account {
-    private Integer aIcon;
     private Integer accid;
     private String accaction;
     private Double accmoney;
     private String acclist;
     private String accsay;
     private String acctime;
+    private String accpic;
 
-    public Account(Integer accid, String accaction, Double accmoney, String acclist, String accsay, String acctime) {
+
+    public String getAccpic() {
+        return accpic;
+    }
+
+    public void setAccpic(String accpic) {
+        this.accpic = accpic;
+    }
+
+    public Account(Integer accid, String accaction, Double accmoney, String acclist, String accsay, String acctime, String accpic) {
         this.accid = accid;
         this.accaction = accaction;
         this.accmoney = accmoney;
         this.acclist = acclist;
         this.accsay = accsay;
         this.acctime = acctime;
+        this.accpic = accpic;
     }
 
-    public Account(String accaction, Double accmoney, String acclist, String accsay, String acctime) {
+    public Account(String accaction, Double accmoney, String acclist, String accsay, String acctime, String accpic) {
         this.accaction = accaction;
         this.accmoney = accmoney;
         this.acclist = acclist;
         this.accsay = accsay;
         this.acctime = acctime;
+        this.accpic = accpic;
     }
 
     public Account(Integer accid, String accaction, Double accmoney, String acclist, String accsay) {
@@ -38,19 +49,11 @@ public class Account {
         this.accsay = accsay;
     }
 
-    public Account(Integer aIcon, Double accmoney, String acclist, String acctime) {
-        this.aIcon = aIcon;
+    public Account(Double accmoney, String acclist, String acctime, String accpic) {
         this.accmoney = accmoney;
         this.acclist = acclist;
         this.acctime = acctime;
-    }
-
-    public Integer getaIcon() {
-        return aIcon;
-    }
-
-    public void setaIcon(Integer aIcon) {
-        this.aIcon = aIcon;
+        this.accpic = accpic;
     }
 
     public Integer getAccid() {

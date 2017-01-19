@@ -9,9 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AccountEntryActivity"
-            android:label="账单录入"></activity>
-        <activity android:name=".HomeActivity">
+            android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +22,13 @@
             android:label="月账单一览" />
         <activity
             android:name=".AccountAdminActivity"
-            android:label="秘密花园">
-
+            android:label="秘密花园"></activity>
+        <activity android:name=".ImageShowActivity">
+            <intent-filter>
+                <action android:name="my_action"/>
+                <category android:name="my_category"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
     </application>
 
