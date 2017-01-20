@@ -4,6 +4,8 @@ package com.example.accountbook;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -23,7 +25,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.softwise.Util.BitmapConvent;
 import com.softwise.Util.MyDecimal;
+import com.softwise.Util.SingletonPic;
 import com.softwise.adapter.AccListViewAdapter;
 import com.softwise.db.DBUtil;
 import com.softwise.db.MyOpenDBHelper;
@@ -76,6 +80,8 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
     private int year;
     private int month;
     private View view;
+    //当月记录的条数，用于控制是否需要刷新页面
+    int count=0;
 
     public AccountListFragment() {
         // Required empty public constructor
@@ -370,6 +376,19 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
 
     @Override
     public void click(View v) {
-        Toast.makeText(mContext,"回调的被触发了！"+v.getTag(),Toast.LENGTH_SHORT).show();
+        //得到图片
+        Bundle bundle=new Bundle();
+        String picSrc=list.get((Integer) v.getTag()).getAccpic();
+        SingletonPic.getInstance().setPic(picSrc);
+        startActivity(new Intent(mContext,ImageShowActivity.class));
+//        Intent intent=new Intent(mContext,ImageShowActivity.class);
+
+        //Bitmap bitmap=BitmapConvent.convertStringToIcon(picSrc);
+        //Bundle bundle=new Bundle();
+       // bundle.putParcelable("pic",bitmap);
+//        bundle.putString("pic",picSrc);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
+        //Toast.makeText(mContext,"回调的被触发了！"+v.getTag(),Toast.LENGTH_SHORT).show();
     }
 }

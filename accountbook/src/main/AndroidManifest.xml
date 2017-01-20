@@ -19,11 +19,7 @@
         </activity>
 
         <activity android:name=".ImageShowActivity">
-            <intent-filter>
-                <action android:name="my_action"/>
-                <category android:name="my_category"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+
         </activity>
     </application>
 

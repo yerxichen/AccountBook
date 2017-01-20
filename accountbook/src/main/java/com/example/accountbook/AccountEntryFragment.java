@@ -110,8 +110,8 @@ public class AccountEntryFragment extends Fragment implements Validator.Validati
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
             //目标图片的大小
-            int newWidth = 400;
-            int newHeight = 400*height/width;
+            int newWidth = 200;
+            int newHeight = 200*height/width;
             //计算缩放率，新尺寸除以旧尺寸
             float scaleWith = (float) newWidth / width;
             float scaleHeight = (float) newHeight / height;
@@ -127,7 +127,7 @@ public class AccountEntryFragment extends Fragment implements Validator.Validati
             //BitmapDrawable drawable = new BitmapDrawable(reBitmap);
 
             //iv_pic.setImageDrawable(drawable);
-            iv_photo.setImageBitmap(bitmap);
+            iv_photo.setImageBitmap(reBitmap);
         }
     }
 
