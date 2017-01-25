@@ -94,10 +94,10 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
         getCun(year,month,db,tv_cost,tv_cun);
         //更新listadapter
         //取得集合数据
-        list = (ArrayList<Account>) db.thisMonthList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+       // list = (ArrayList<Account>) db.thisMonthList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
         //加载适配器
-        adapter = new AccListViewAdapter(mContext, list,this);
-        listView.setAdapter(adapter);
+        //adapter = new AccListViewAdapter(mContext, list,this);
+       // listView.setAdapter(adapter);
 
     }
 

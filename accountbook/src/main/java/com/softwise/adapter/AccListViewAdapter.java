@@ -1,10 +1,9 @@
 package com.softwise.adapter;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.LauncherApps;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.accountbook.HomeActivity;
-import com.example.accountbook.ImageShowActivity;
 import com.example.accountbook.R;
 import com.softwise.Util.BitmapConvent;
 import com.softwise.dto.Account;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 
 /**
@@ -83,7 +79,8 @@ public class AccListViewAdapter extends BaseAdapter implements View.OnClickListe
         viewHolder.acclist.setText(list.get(position).getAcclist());
         viewHolder.accsay.setText(list.get(position).getAccsay());
         viewHolder.acctime.setText(list.get(position).getAcctime());
-        viewHolder.accpic.setImageBitmap(BitmapConvent.convertStringToIcon(list.get(position).getAccpic()));
+        //viewHolder.accpic.setImageBitmap(BitmapConvent.convertStringToIcon(list.get(position).getAccpic()));
+        new ImageLoader().showImageByThread(viewHolder.accpic,position);
         viewHolder.accpic.setOnClickListener(this);
         viewHolder.accpic.setTag(position);
         return convertView;
@@ -98,4 +95,42 @@ public class AccListViewAdapter extends BaseAdapter implements View.OnClickListe
         TextView acctime;
         ImageView accpic;
     }
+
+    /**
+     * 异步加载图片
+     */
+    class ImageLoader{
+        private ImageView imageView;
+        private Handler handler =new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                imageView.setImageBitmap((Bitmap) msg.obj);
+            }
+        };
+
+        /**
+         * 使用多线程实现异步加载
+         */
+        public void showImageByThread(ImageView imageView, final int position){
+            this.imageView=imageView;
+            new Thread(){
+                @Override
+                public void run() {
+                    super.run();
+                    Message message=Message.obtain();
+                    Bitmap bitmap=getBitmap(position);
+                    message.obj=bitmap;
+                    handler.sendMessage(message);
+
+                }
+            }.start();
+        }
+
+        public Bitmap getBitmap(int position){
+            return  BitmapConvent.convertStringToIcon(list.get(position).getAccpic());
+        }
+    }
+
+
 }
