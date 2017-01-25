@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.DecimalMin;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.softwise.Util.BitmapConvent;
 import com.softwise.Util.MyDecimal;
 import com.softwise.Util.SingletonPic;
 import com.softwise.adapter.AccListViewAdapter;
@@ -40,7 +38,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccountListFragment extends Fragment implements AdapterView.OnItemClickListener,AccListViewAdapter.Callback{
+public class AccountListFragment extends Fragment implements AdapterView.OnItemClickListener, AccListViewAdapter.Callback {
     //定义变量
     private DBUtil db;
     private Context mContext;
@@ -80,24 +78,24 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
     private int year;
     private int month;
     private View view;
-    //当月记录的条数，用于控制是否需要刷新页面
-    int count=0;
+
 
     public AccountListFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
         //更新状态栏
-        getCun(year,month,db,tv_cost,tv_cun);
+        getCun(year, month, db, tv_cost, tv_cun);
         //更新listadapter
         //取得集合数据
-       // list = (ArrayList<Account>) db.thisMonthList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+        // list = (ArrayList<Account>) db.thisMonthList(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
         //加载适配器
         //adapter = new AccListViewAdapter(mContext, list,this);
-       // listView.setAdapter(adapter);
+        // listView.setAdapter(adapter);
 
     }
 
@@ -131,7 +129,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
         //取得集合数据
         list = (ArrayList<Account>) db.thisMonthList(year, month);
         //加载适配器
-        adapter = new AccListViewAdapter(mContext, list,this);
+        adapter = new AccListViewAdapter(mContext, list, this);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         btn_last.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +143,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
                 //取得集合数据
                 list = (ArrayList<Account>) db.thisMonthList(year, month);
                 //加载适配器
-                adapter = new AccListViewAdapter(mContext, list,null);
+                adapter = new AccListViewAdapter(mContext, list, null);
                 listView.setAdapter(adapter);
                 //更新状态栏
                 getCun(year, month, db, tv_cost, tv_cun);
@@ -163,7 +161,7 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
                 //取得集合数据
                 list = (ArrayList<Account>) db.thisMonthList(year, month);
                 //加载适配器
-                adapter = new AccListViewAdapter(mContext, list,null);
+                adapter = new AccListViewAdapter(mContext, list, null);
                 listView.setAdapter(adapter);
                 //更新状态栏
                 getCun(year, month, db, tv_cost, tv_cun);
@@ -377,18 +375,20 @@ public class AccountListFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void click(View v) {
         //得到图片
-        Bundle bundle=new Bundle();
-        String picSrc=list.get((Integer) v.getTag()).getAccpic();
+        Bundle bundle = new Bundle();
+        String picSrc = list.get((Integer) v.getTag()).getAccpic();
         SingletonPic.getInstance().setPic(picSrc);
-        startActivity(new Intent(mContext,ImageShowActivity.class));
+        startActivity(new Intent(mContext, ImageShowActivity.class));
 //        Intent intent=new Intent(mContext,ImageShowActivity.class);
 
         //Bitmap bitmap=BitmapConvent.convertStringToIcon(picSrc);
         //Bundle bundle=new Bundle();
-       // bundle.putParcelable("pic",bitmap);
+        // bundle.putParcelable("pic",bitmap);
 //        bundle.putString("pic",picSrc);
 //        intent.putExtras(bundle);
 //        startActivity(intent);
         //Toast.makeText(mContext,"回调的被触发了！"+v.getTag(),Toast.LENGTH_SHORT).show();
     }
+
+
 }
