@@ -4,15 +4,17 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="75sp"
+        android:layout_height="75sp"
         android:id="@+id/iv_photo_head" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="75sp"
         android:orientation="vertical">
         <TextView
             android:gravity="center_vertical"
@@ -44,7 +46,7 @@
             <TextView
                 android:text="价格："
                 android:gravity="center_vertical|left"
-                android:layout_width="60dp"
+                android:layout_width="60sp"
                 android:layout_height="match_parent" />
             <TextView
                 android:gravity="center_vertical"
@@ -129,14 +131,14 @@
             <!--android:layout_height="match_parent" />-->
     </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_update"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:src="@drawable/update" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_del"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:src="@drawable/del"/>
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:id="@+id/iv_update"-->
+        <!--android:layout_width="40sp"-->
+        <!--android:layout_height="40sp"-->
+        <!--android:src="@drawable/update" />-->
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:id="@+id/iv_del"-->
+        <!--android:layout_width="40sp"-->
+        <!--android:layout_height="40sp"-->
+        <!--android:src="@drawable/del"/>-->
 </LinearLayout>

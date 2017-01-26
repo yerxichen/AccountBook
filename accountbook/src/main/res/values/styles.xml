@@ -16,7 +16,7 @@
         <item name="android:textColor">@drawable/rb_text</item>
         <item name="android:textSize">20sp</item>
         <item name="android:paddingTop">3dp</item>
-        <item name="android:background">@drawable/rb_background</item>
+
     </style>
     <style name="TitleText">
         <item name="android:textColor">@color/text_gray</item>
